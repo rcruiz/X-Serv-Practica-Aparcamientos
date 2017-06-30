@@ -1,0 +1,27 @@
+{% extends "businessxhtml/index.html" %}
+{% block menu %}
+  <li><a href="/">Inicio</a></li>
+{% endblock %}
+{% block content %}
+  <p>{{ content }}</p>
+  <ul>
+    <li><h2>{{aparca.nombre}}</h2></li>
+      <ul><li><a href='{{aparca.url}}'>{{aparca.url}}</a></li>
+        <li>Direccion: {{aparca.dir2}}</li>
+        <li>Latitud: {{aparca.latitud}}. Longitud: {{aparca.longitud}}</li>
+        <li>Barrio: {{aparca.barrio}}. Distrito: {{aparca.distrito}}</li>
+        <li>Descripción: {{aparca.descripcion}}</li>
+        <li>Datos de contacto:Teléfono: {{aparca.telf}}  email: {{aparca.email}}</li>
+        <li><strong>Comentarios almacenados:</strong></li>
+          {% for comment in lcomment %}
+            {{comment.contenido}}
+          {% endfor %}
+        <p><form method="POST" action="">
+          <label for="comment">Comentario</label><br />
+          <textarea cols="30" rows="5" name="comment" ></textarea>
+          <input type="submit" name="submit" value="Añadir" class="submit">
+          </form>
+        </p>
+      </ul>
+  </ul>
+{% endblock %}

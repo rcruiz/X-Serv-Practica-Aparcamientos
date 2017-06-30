@@ -1,0 +1,27 @@
+{% extends "businessxhtml/index.html" %}
+{% block menu %}
+  <li><a href="/">Inicio</a></li>
+{% endblock %}
+{% block content %}
+  <p>{{ content|safe }}</p>
+  <form method="POST" action="">
+    <select name="distrito">
+      <option value="Mostrar todos"></option>
+      {% for dis in listadistrito %}
+        <option value={{dis}}>{{dis}}</option>
+      {% endfor %}
+    </select>
+    <input type="submit" name={{filtro|default:"filtro"}} value="Distrito" class="submit">
+    <input type="hidden" name="next" value="/aparcamientos" />
+  </form>
+  {% for aparca in listaAparca %}
+    <ul>
+      <li><a href={{ dir }}"/aparcamientos/{{aparca.id}}">{{aparca.nombre}}</a></li>
+      {% if usuario|length != 0 %}
+        <form method="POST" action="">
+          <button type="submit" name="_submit" value={{aparca.id}}>Seleccionar</button>
+        </form>
+      {% endif %}
+    </ul>
+  {% endfor %}
+{% endblock %}
